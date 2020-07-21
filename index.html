@@ -1,0 +1,195 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@suin/email-data - v1.0.0</title>
+	<meta name="description" content="Documentation for @suin/email-data - v1.0.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">@suin/email-data - v1.0.0</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>@suin/email-data - v1.0.0</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#suinemail-data" id="suinemail-data" style="color: inherit; text-decoration: none;">
+					<h1>@suin/email-data</h1>
+				</a>
+				<p>A simple email data representation for TypeScript.</p>
+				<p>This component provides a very simple reusable interface that represents an email.</p>
+				<p>The interface was designed for the use case that treats received emails from POP3, SendGrid Inbound Parse, Gmail API and so on.</p>
+				<a href="#features" id="features" style="color: inherit; text-decoration: none;">
+					<h2>Features</h2>
+				</a>
+				<ul>
+					<li>Abstract email data type <code>EmailData</code></li>
+					<li>Type guard function</li>
+					<li>Validation function</li>
+					<li>Assertion function</li>
+				</ul>
+				<a href="#missing-features" id="missing-features" style="color: inherit; text-decoration: none;">
+					<h3>Missing Features</h3>
+				</a>
+				<p>The following features hasn&#39;t been implemented yet:</p>
+				<ul>
+					<li>Some models:<ul>
+							<li>BCC header</li>
+							<li>Attachments</li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
+				<pre><code class="language-bash">yarn add @suin/email-data
+<span class="hljs-comment"># or</span>
+npm install @suin/email-data</code></pre>
+				<a href="#usages" id="usages" style="color: inherit; text-decoration: none;">
+					<h2>Usages</h2>
+				</a>
+				<a href="#declaring-the-emaildata-value" id="declaring-the-emaildata-value" style="color: inherit; text-decoration: none;">
+					<h3>Declaring the <code>EmailData</code> value</h3>
+				</a>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { EmailData } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@suin/email-data&#x27;</span>
+
+<span class="hljs-keyword">const</span> email: EmailData = {
+  <span class="hljs-keyword">from</span>: [{ name: <span class="hljs-string">&#x27;Alice&#x27;</span>, address: <span class="hljs-string">&#x27;alice@example.com&#x27;</span> }],
+  to: [{ name: <span class="hljs-string">&#x27;Bob&#x27;</span>, address: <span class="hljs-string">&#x27;bob@example.com&#x27;</span> }],
+  cc: [],
+  replyTo: [],
+  subject: <span class="hljs-string">&#x27;Hi&#x27;</span>,
+  bodyText: <span class="hljs-string">&#x27;Hello&#x27;</span>,
+  bodyHtml: <span class="hljs-string">&#x27;&lt;p&gt;Hello&lt;/p&gt;&#x27;</span>,
+}</code></pre>
+				<a href="#using-the-type-guard-function" id="using-the-type-guard-function" style="color: inherit; text-decoration: none;">
+					<h3>Using the type guard function</h3>
+				</a>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { isEmailData } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@suin/email-data&#x27;</span>
+
+<span class="hljs-keyword">const</span> email: unknown = {
+  <span class="hljs-comment">/* ... */</span>
+}
+
+<span class="hljs-keyword">if</span> (isEmailData(email)) {
+  <span class="hljs-built_in">console</span>.log(email.subject)
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;The value is incompatible with EmailData&#x27;</span>)
+}</code></pre>
+				<a href="#using-the-validation-function" id="using-the-validation-function" style="color: inherit; text-decoration: none;">
+					<h3>Using the validation function</h3>
+				</a>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { parseEmailData } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@suin/email-data&#x27;</span>
+
+<span class="hljs-keyword">try</span> {
+  <span class="hljs-keyword">const</span> email = parseEmailData(<span class="hljs-built_in">JSON</span>.parse(<span class="hljs-string">&#x27;{}&#x27;</span>))
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;The JSON value is compatible with EmailData&#x27;</span>, email)
+} <span class="hljs-keyword">catch</span> (error) {
+  <span class="hljs-built_in">console</span>.log(error)
+}</code></pre>
+				<a href="#using-the-assertion-function" id="using-the-assertion-function" style="color: inherit; text-decoration: none;">
+					<h3>Using the assertion function</h3>
+				</a>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { assertEmailData } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@suin/email-data&#x27;</span>
+
+<span class="hljs-keyword">try</span> {
+  <span class="hljs-keyword">const</span> email: unknown = <span class="hljs-built_in">JSON</span>.parse(<span class="hljs-string">&#x27;{}&#x27;</span>)
+  assertEmailData(email)
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;The JSON value is compatible with EmailData&#x27;</span>, email)
+} <span class="hljs-keyword">catch</span> (error) {
+  <span class="hljs-built_in">console</span>.log(error)
+}</code></pre>
+				<a href="#api-reference" id="api-reference" style="color: inherit; text-decoration: none;">
+					<h2>API Reference</h2>
+				</a>
+				<p><a href="https://suin.github.io/email-data/">https://suin.github.io/email-data/</a></p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_index_.html">&quot;index&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
