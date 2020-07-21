@@ -1,6 +1,6 @@
 {
   "name": "@suin/email-data",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "description": "A simple email data representation for TypeScript",
   "keywords": [
     "email"
